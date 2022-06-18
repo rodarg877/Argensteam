@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - Argensteam</title>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
     
 </head>
 <body class="body">
@@ -19,7 +20,10 @@
                 <a class="nav-link nav-button" asp-action="Soporte">Soporte</a>
             </li>
             <li class="nav-item as ">
-                <a class="nav-link nav-button" href="#">Noticias</a>
+                <a class="nav-link nav-button" asp-action="Noticias">Noticias</a>
+            </li>
+            <li class="nav-item as ">
+                <a class="nav-link nav-button" asp-action="Perfil">Perfil</a>
             </li>
         </ul>
         <a  class="nav-link  col-md-2 inicio" asp-action="InicioSesion">Iniciar Sesion</a>

@@ -60,6 +60,18 @@ namespace Argensteam1.Controllers
             return View();
         }
 
+        //GET: Noticias
+        public async Task<IActionResult> Noticias()
+        {
+            return View(await _context.Noticias.ToListAsync());
+        }
+
+        //GET: Soporte
+        public IActionResult Perfil()
+        {
+            return View();
+        }
+
         // POST: Home/Registro
 
         [HttpPost]
