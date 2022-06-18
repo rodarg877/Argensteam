@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Argensteam1.Models.Juego>
+@{
+    ViewData["Title"] = "Home Page";
+}
+ 
+    <div class="row">
+        <aside class="col-md-2  aside">
+            <h1 class="categoria"><u>Categorias</u></h1>
+            <ul>
+            @foreach (Categoria c in Enum.GetValues(typeof(Categoria)))
+            {
+            <li>
+               <button class= "btn btn-outline-light btn-lg mt-5 mb-3">@c</button>
+            </li> 
+            }
+            </ul>
+        </aside>
+
+        <article class="col-md-9  mt-5">
+            <h4 class="titulo ml-3">Destacado y recomendado</h4>
+            <div class="col-md-1"></div>
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    @for (var i = 0; i < 3; i++)
+                {
+                    var style = (i == 0) ? "active" : "";
+                    <div class="carousel-item carrouselCentrado @style">
+                        <img src=@Url.Content(@Model.ElementAt(i).Imagenes) class="d-block tamaño" alt="">
+                        <div class="carousel-caption d-none d-md-block">
+                    <section class="shadow">
+                                <h5 class="carrusel"> @Model.ElementAt(i).Name</h5>
+                            <p class="carrusel">Precio: $@Model.ElementAt(i).Precio</p>
+                          </section>
+
+                        </div> 
+                        </div>
+                   }   
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="row mt-5">
+               @foreach (Juego juego in Model) {
+                    <div class="col-md-3 ml-3 tarjeta" >
+                    <h5 id="nombre" class="tituloTarjeta"> @Html.DisplayFor(modelItem=>juego.Name) </h5>
+                    <img  class= "tamañoJuegoVenta" src=@Url.Content(juego.Imagenes) alt="">
+                    <h5 class="titulo2">Precio: $ @Html.DisplayFor(modelItem=>juego.Precio) </h5>
+                    <a class="btn btn-outline-primary" asp-action="Juegos" asp-route-id="@juego.Id">Ver Mas</a>
+                </div> 
+                }
+               
+            </div>
+        </article>
+    </div>

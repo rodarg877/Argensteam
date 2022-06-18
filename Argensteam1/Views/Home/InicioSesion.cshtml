@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Inicio Sesion";
+}
+ <div class="d-flex flex-column min-vh-100  justify-content-center align-items-center a1">
+            <div class="card p-4 text-light bg-dark mb-5 rounded-lg ancho">
+                <div class="card-header">
+                    <h3>Iniciar sesión </h3>
+                </div>
+                <div class="card-body w-100 mt-3">
+                    <form name="login" action="" method="post">
+                        <div class="input-group form-group mt-3">
+                            <div class="bg-secondary rounded-start">
+                                <span class="m-3"><i class="bi bi-person mt-3"  ></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Usuario" name="username">
+                        </div>
+                        <div class="input-group form-group mt-3">
+                            <div class="bg-secondary rounded-start">
+                                <span class="m-3"><i class="bi bi-lock"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Contraseña" name="password">
+                        </div>
+
+                        <div class="form-group mt-5">
+                            <input type="submit" value="Acceder" class="btn bg-secondary float-end text-white w-100"  name="login-btn">
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center container">
+                        <a asp-action="Registro" class=" register-btn col-md-3"  name="register-btn">Registrarse</a>
+                        <div class="col-md-1"></div>
+                    <a class=" register-btn  col-md-5"  name="olvido">¿Olvidaste tu contraseña?</a>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Argensteam</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    
+</head>
+<body class="body">
+    <header class="row nav-fondo">
+        <a class="navbar-brand col-md-3" asp-action="Index"><h1 class="logo">¼rgenSteam Ç   </h1></a>
+        <ul class="nav justify-content-center col-md-6 ">
+            <li class="nav-item as">
+                <a class="nav-link active nav-button" aria-current="page" asp-action="Index">Tienda</a>
+            </li>
+            <li class="nav-item as">
+                <a class="nav-link nav-button" href="#">Soporte</a>
+            </li>
+            <li class="nav-item as ">
+                <a class="nav-link nav-button" href="#">Noticias</a>
+            </li>
+        </ul>
+        <a  class="nav-link  col-md-2 inicio" asp-action="InicioSesion">Iniciar Sesion</a>
+    </header>
+    <div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Argensteam - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
