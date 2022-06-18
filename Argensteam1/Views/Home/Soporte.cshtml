@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+    
+
+
+    <h1 class="tituloTarjeta">Envianos tu consulta</h1>
+
+    <form action="" method="post" onsubmit=" ">
+      <div class="container centrar">
+        <label class="carrusel" for="email">Email*</label>
+        <input type="text" class="form-control formato" name="email" placeholder="email@email.com" id="email" value="" onkeypress=" "
+                  onchange=" "/>
+        <p class="error" id="incorrecto">Email incorrecto</p>
+        <label for="nombre" class="carrusel">Nombre*</label>
+        <input class="form-control formato" type="text" name="nombre" placeholder="Nombre" id="nombre" onkeypress=" "
+          onchange="validarNombre(this.value)"/>
+        <p class="error" id="nombIncorrecto">El nombre debe tener mas de 2 caracteres</p>
+        <label for="Comentarios" class="carrusel">Comentarios</label>
+        <textarea class="form-control formato" name="Comentario" id="comentario" cols="30" rows="10"></textarea>
+        <div class="col-md-12 text-center mt-4">
+            <input class="btn btn-lg btn-success formato" type="submit" id="boton" value="Enviar" name="" onclick="" />
+        </div>
+
+      </div>
+    </form>
+
+    <script src = "~/js/validaciones.js"></script>

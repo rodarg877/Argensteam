@@ -49,13 +49,19 @@ namespace Argensteam1.Controllers
         {    
         return View();
         }
-        //GET:Rgistro
+        //GET: Registro
         public IActionResult Registro()
         {
             return View();
         }
+
+        //GET: Soporte
+        public IActionResult Soporte() { 
+            return View();
+        }
+
         // POST: Home/Registro
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registro([Bind("UserId,Username,Password,Email")] Usuario usuario)
