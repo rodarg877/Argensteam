@@ -10,17 +10,17 @@
                 <h3>CREAR TU CUENTA </h3>
             </div>
             <div class="card-body w-100 mt-3">
-                <form name="registro" asp-action="Registro">
+                <form asp-action="Registro">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="input-group form-group mt-3">
                         <label class="w-100" for="username">User name</label>
-                        <input type="text" class="form-control w-100 mb-3" asp-for="Username" placeholder="Usuario">
+                        <input  class="form-control w-100 mb-3" asp-for="Username" placeholder="Usuario">
                         <span asp-validation-for="Username" class="text-danger"></span>
                         <label class="w-100" for="pass">Dirección de correo electrónico</label>
-                        <input type="email" class="form-control w-100 mb-3" asp-for="Email" placeholder="email@email.com" >
+                        <input  class="form-control w-100 mb-3" asp-for="Email" placeholder="email@email.com" >
                         <span asp-validation-for="Email" class="text-danger"></span>
                         <label class="w-100" for="pass">Password</label>
-                        <input type="password" class="form-control w-100 mb-3" asp-for="Password" placeholder="Contraseña">
+                        <input  class="form-control w-100 mb-3" asp-for="Password" placeholder="Contraseña">
                         <span asp-validation-for="Password" class="text-danger"></span>
                         <label for="confirmPass" class="w-100">Confirma tu Password</label>
                         <input type="password" class="form-control w-100 mb-3" placeholder="Contraseña" name="confirmPass">

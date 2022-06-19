@@ -9,8 +9,13 @@ namespace Argensteam1.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
+        [Required(ErrorMessage = "El Campo es requerido")]
         private string _username;
+        [Required(ErrorMessage ="El Campo es requerido") ]
+        [StringLength(8, ErrorMessage = "{0} La Cantidad de letrasdebe ser entre {2} y {1}.", MinimumLength = 6)]
         private string _password;
+        [Required(ErrorMessage = "El Campo es requerido")]
+        [EmailAddress(ErrorMessage = "El formato no es Valido")]
         private string _email;
         public string FotoPerfil { get; set; }
         public ICollection<UsuarioJuego> UsuarioJuegos { get; set; }
