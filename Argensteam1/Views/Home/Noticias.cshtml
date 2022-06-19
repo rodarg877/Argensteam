@@ -10,11 +10,13 @@
 <h1 class="tituloTarjeta">Últimas Noticias</h1>
 
 
-<div class="table-responsive">
-<table class="col-md-10 table align-middle table-striped">
+<div class="container">
+<table class=" table  opacityTable ">
     @foreach (Noticia noticia in Model)
     {
     <tr class="table-light">
+        <td><img src="~/images/noticias.jpg" class="tamañoJuegoVenta" />
+            </td>
         <td>
             <div class= "mt-4">
                 <a href="@Html.DisplayFor(noticiaItem => noticia.Url)" target="_blank">

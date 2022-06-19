@@ -190,3 +190,8 @@ i {
     background-color:#9fa9b2d3;
     
 }
+.opacityTable {
+    opacity: 0.60;
+    content: "";
+    width:80%;
+}
