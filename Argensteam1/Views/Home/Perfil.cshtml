@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="profile-message-btn center-block text-center mb-3">
-                    <a href="#" class="btn btn-success">
+                    <a asp-action="Soporte" class="btn btn-success">
                         <i class="fa fa-envelope"></i> Send message
                     </a>
                 </div>
@@ -41,20 +41,21 @@
 
         <div class="col-lg-9 col-md-8 col-sm-8">
             <div class="main-box clearfix mt-5">
-                <div class="tabs-wrapper profile-tabs">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item"><a class="nav-link active" href="#tab-biblioteca" data-toggle="tab">Biblioteca</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#tab-whishlist" data-toggle="tab">Whishlist</a></li>
-                    </ul>
-
+                <div class="">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">  
+                            <button class="nav-link active" id="nav-biblioteca-tab" data-bs-toggle="tab" data-bs-target="#tab-biblioteca" type="button" role="tab" aria-controls="nav-biblioteca" aria-selected="true">Biblioteca</button>
+                         <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#tab-whishlist" type="button" role="tab" aria-controls="nav-whishlist" aria-selected="false">Whishlist</button>
+                    </div>
+                   </nav>
                     <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab-activity">
-
+                        <div class="tab-pane fade show active" id="tab-biblioteca">
+                            
 
                         </div>
 
-                        <div class="tab-pane fade" id="tab-friends">
-
+                        <div class="tab-pane fade" id="tab-whishlist">
+                            
 
                         </div>
 

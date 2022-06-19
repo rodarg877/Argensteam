@@ -156,7 +156,7 @@ i {
     height: 14rem;
     margin: 0;
     padding: 0;
-    width: 9rem;
+    width: 13rem;
 }
 
 .tarjeta {
@@ -187,5 +187,6 @@ i {
 }
 
 .fondo{
-    background-color: white;
+    background-color:#9fa9b2d3;
+    
 }
