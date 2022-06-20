@@ -14,31 +14,29 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="input-group form-group mt-3">
                         <label class="w-100" for="username">User name</label>
-                        <input  class="form-control w-100 mb-3" asp-for="Username" placeholder="Usuario">
+                        <input  class="form-control w-100 mb-1" asp-for="Username" placeholder="Usuario">
                         <span asp-validation-for="Username" class="text-danger"></span>
                         <label class="w-100" for="pass">Dirección de correo electrónico</label>
-                        <input  class="form-control w-100 mb-3" asp-for="Email" placeholder="email@email.com" >
+                        <input  class="form-control w-100 mb-1" asp-for="Email" placeholder="email@email.com" >
                         <span asp-validation-for="Email" class="text-danger"></span>
                         <label class="w-100" for="pass">Password</label>
-                        <input  class="form-control w-100 mb-3" asp-for="Password" placeholder="Contraseña">
+                        <input  class="form-control w-100 mb-1" asp-for="Password" placeholder="Contraseña">
                         <span asp-validation-for="Password" class="text-danger"></span>
-                        <label for="confirmPass" class="w-100">Confirma tu Password</label>
-                        <input type="password" class="form-control w-100 mb-3" placeholder="Contraseña" name="confirmPass">
-                      
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="terminos" name="terminos">
+                            <input type="checkbox" class="form-check-input" id="terminos" name="terminos" required>
                             <label for="terminos"> Tengo 13 años o más y acepto los términos del Acuerdo de Suscriptor a
                                 ArgenSteam y la Política de Privacidad</label>
                         </div>
                     </div>
                     <div class="form-group mt-5">
-                        <input type="submit" value="Registro" class="btn bg-secondary float-end text-white w-100"
-                            name="login-btn">
+                        <input type="submit" value="Registro" class="btn bg-secondary float-end text-white w-100">
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+
     @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
