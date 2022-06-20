@@ -13,7 +13,7 @@
                 <form asp-action="Registro">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="input-group form-group mt-3">
-                        <label class="w-100" for="username">User name</label>
+                        <label class="w-100" for="username">Usuario</label>
                         <input  class="form-control w-100 mb-1" asp-for="Username" placeholder="Usuario">
                         <span asp-validation-for="Username" class="text-danger"></span>
                         <label class="w-100" for="pass">Dirección de correo electrónico</label>
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <script>
+    <script src="~/js/validaciones.js"></script>
 
     @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
