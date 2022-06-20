@@ -20,15 +20,17 @@ namespace Argensteam1.Models
         private string _email;
         public string FotoPerfil { get; set; }
         public ICollection<UsuarioJuego> UsuarioJuegos { get; set; }
-        [Required(ErrorMessage = "El Campo es requerido")]
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El Campo es requerido")]
         [StringLength(10, ErrorMessage = "{0} La Cantidad de letras debe ser entre {2} y {1}.", MinimumLength = 4)]
         public string Username
         {
             get { return _username; }
             set { _username = value; }
         }
-        [Required(ErrorMessage = "El Campo es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El Campo es requerido")]
         [StringLength(10, ErrorMessage = "{0} La Cantidad de letras debe ser entre {2} y {1}.", MinimumLength = 4)]
+        //[RegularExpression("\d", ErrorMessage = "La contraseña debe tener un número")]
         public string Password
         {
             get { return _password; }
