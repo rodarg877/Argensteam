@@ -86,6 +86,19 @@ namespace Argensteam1.Controllers
             }
             return View(usuario);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Mensaje([Bind("Nombre,Email,Mensaje")] Soporte soporte)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(soporte);
+                await _context.SaveChangesAsync();
+                return Content("<script language='javascript' type='text/javascript'>alert('Gracias por tu comentario');</script>");
+            }
+            return View(soporte);
+        }
         // GET: Juego/Juegos/5
         public async Task<IActionResult> Juegos(int? id)
         {
