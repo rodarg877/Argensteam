@@ -40,7 +40,10 @@
             <h1 class="descripcion"><u>@Model.Name</u></h1>
             <p>@Model.Descripcion</p>
             <p>Precio: $@Model.Precio</p>
-            <button class="btn btn-primary btn-lg mt-3"> Comprar</button>
+            <div style="display:inline-block">
+                <button class="btn btn-primary btn-lg mt-3 mr-2"> Comprar</button>
+                <button class="btn btn-primary btn-lg mt-3"> Whishlist</button>
+            </div>
         </aside>
     </div>
     @section Scripts {

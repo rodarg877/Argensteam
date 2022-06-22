@@ -125,7 +125,7 @@ i {
     margin-left:1rem;    
     color: white;
 }
-    .tituloTarjeta {
+.tituloTarjeta {
     padding-top:1.5rem;
     color: white;
     height: 100px;
@@ -195,3 +195,4 @@ i {
     content: "";
     width:80%;
 }
+
