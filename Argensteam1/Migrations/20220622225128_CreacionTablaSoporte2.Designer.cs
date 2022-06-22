@@ -3,14 +3,16 @@ using Argensteam1.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Argensteam1.Migrations
 {
     [DbContext(typeof(ArgensteamDatabaseContext))]
-    partial class ArgensteamDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220622225128_CreacionTablaSoporte2")]
+    partial class CreacionTablaSoporte2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

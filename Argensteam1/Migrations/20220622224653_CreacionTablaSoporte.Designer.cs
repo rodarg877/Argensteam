@@ -3,14 +3,16 @@ using Argensteam1.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Argensteam1.Migrations
 {
     [DbContext(typeof(ArgensteamDatabaseContext))]
-    partial class ArgensteamDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220622224653_CreacionTablaSoporte")]
+    partial class CreacionTablaSoporte
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,30 +69,6 @@ namespace Argensteam1.Migrations
                     b.HasKey("NoticiaId");
 
                     b.ToTable("Noticias");
-                });
-
-            modelBuilder.Entity("Argensteam1.Models.Soporte", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mensaje")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Soporte");
                 });
 
             modelBuilder.Entity("Argensteam1.Models.Usuario", b =>

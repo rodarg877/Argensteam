@@ -89,7 +89,7 @@ namespace Argensteam1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Mensaje([Bind("Nombre,Email,Mensaje")] Soporte soporte)
+        public async Task<IActionResult> Soporte([Bind("Nombre,Email,Mensaje")] Soporte soporte)
         {
             if (ModelState.IsValid)
             {

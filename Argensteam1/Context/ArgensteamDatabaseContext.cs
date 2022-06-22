@@ -30,5 +30,6 @@ namespace Argensteam1.Context
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Noticia> Noticias { get; set; }
         public DbSet<UsuarioJuego> UsuarioJuegos { get; set; }
+        public DbSet<Soporte> Soporte { get; set; }
     }
 }

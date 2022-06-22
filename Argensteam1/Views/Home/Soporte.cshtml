@@ -12,16 +12,16 @@
 
     <h1 class="tituloTarjeta">Envianos tu consulta</h1>
 
-    <form asp-action="Mensaje">
+    <form asp-action="Soporte">
       <div class="container centrar">
-        <label class="carrusel" for="email">Email*</label>
-        <input type="text" class="form-control formato" asp-for="Email" name="email" placeholder="email@email.com" id="email" value=""/>
+        <label class="carrusel w-100 mt-1" for="email">Email*</label>
+        <input  class="form-control formato" asp-for="Email"  placeholder="email@email.com" id="email" value=""/>
         <span asp-validation-for="Email" class="text-danger"></span>
-        <label for="nombre" class="carrusel">Nombre</label>
-        <input class="form-control formato" type="text" asp-for="Nombre" name="nombre" placeholder="Nombre" id="nombre">
+        <label for="nombre" class="carrusel w-100 mt-1">Nombre</label>
+        <input class="form-control formato" asp-for="Nombre" placeholder="Nombre" id="nombre">
         <span asp-validation-for="Nombre" class="text-danger"></span>
-        <label for="Comentarios" class="carrusel">Comentarios</label>
-        <textarea class="form-control formato" name="Comentario" asp-for="Mensaje" id="comentario" cols="30" rows="10"></textarea>
+        <label for="Comentarios" class="carrusel w-100 mt-1">Comentarios</label>
+        <textarea class="form-control formato" asp-for="Mensaje" id="comentario" cols="30" rows="10"></textarea>
         <span asp-validation-for="Mensaje" class="text-danger"></span>
         <div class="col-md-12 text-center mt-4">
             <input class="btn btn-lg btn-success formato" type="submit" id="boton" value="Enviar" name="" onclick="" />
