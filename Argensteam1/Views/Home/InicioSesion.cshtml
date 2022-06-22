@@ -12,20 +12,24 @@
                 </div>
                 <div class="card-body w-100 mt-3">
                     <script src = "validaciones.js"></script>
-                    <form name="login" action="" method="post" onsubmit="validarFormulario(event)">
-                        <div class="input-group form-group mt-3">
+                    <form name="login" asp-action="Acceder" method="post">
+                       
+                            <div class="w-100 mb-1"> 
+                                <div class="input-group form-group mt-3">
                             <div class="bg-secondary rounded-start">
                                 <span class="m-3"><i class="bi bi-person mt-3"  ></i></span>
                             </div>
-                            <input id="ususario" type="text" class="form-control" placeholder="Usuario" name="Username" asp-for="Username" onchange="validarNombre(this.value)">
+                            <input id="ususario" type="text" class="form-control " placeholder="Usuario" name="Username" asp-for="Username" >
+                           </div>
                             <span asp-validation-for="Username" class="text-danger"></span>
                         </div>
+                        <div class="w-100 mb-1">
                         <div class="input-group form-group mt-3">
                             <div class="bg-secondary rounded-start">
                                 <span class="m-3"><i class="bi bi-lock"></i></span>
                             </div>
-                            <input id="contrasenia" type="password" class="form-control" placeholder="Contraseña"  asp-for="Password" name="password" onchange="validarContrasenia(this.value)"
-                            onkeypress="validarContrasenia(this.value)">
+                            <input id="contrasenia" type="password" class="form-control" placeholder="Contraseña"  asp-for="Password" name="password">
+                            </div>
                            <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
 
