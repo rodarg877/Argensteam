@@ -13,6 +13,7 @@ using Argensteam1.Context;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 
+
 namespace Argensteam1
 {
     public class Startup
@@ -42,6 +43,15 @@ namespace Argensteam1
            ReferenceLoopHandling.Ignore)
 
            .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(1);//si quieren que la sesión expire luego de determinado tiempo  
+            });
+
+            services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +80,18 @@ namespace Argensteam1
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseSession();     //Habilitar sesiones.
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //});
+
+
+
         }
     }
 }

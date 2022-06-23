@@ -40,10 +40,36 @@ namespace Argensteam1.Controllers
       
 
         // GET: Juego
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? idCategoria)
         {
+            if (idCategoria != null)
+            {
+                return View(await _context.Juegos.Where(j => j.Categoria == idCategoria));
+            }
+            
             return View(await _context.Juegos.ToListAsync());
         }
+
+        public async Task<IActionResult> Login(Usuario usuario)
+        {
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            var usuario = await _context.Juegos
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (juego == null)
+            {
+                return NotFound();
+            }
+
+            return View(juego);
+
+
+        }
+
+
         //GET:inicioSession
         public IActionResult InicioSesion()
         {    
