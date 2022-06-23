@@ -29,9 +29,9 @@
                         aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
-                    @for (var i = 3; i < 6; i++)
+                    @for (var i = 0; i < 3; i++)
                 {
-                    var style = (i == 3) ? "active" : "";
+                    var style = (i == 0) ? "active" : "";
                     <div class="carousel-item carrouselCentrado @style">
                         <img src=@Url.Content(@Model.ElementAt(i).Imagenes) class="d-block tamaño" alt="">
                         <div class="carousel-caption d-none d-md-block">
