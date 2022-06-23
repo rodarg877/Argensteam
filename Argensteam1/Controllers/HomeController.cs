@@ -41,11 +41,11 @@ namespace Argensteam1.Controllers
       
 
         // GET: Juego
-        public async Task<IActionResult> Index(int? idCategoria)
+        public async Task<IActionResult> Index(Categoria? idCategoria)
         {
             if (idCategoria != null)
             {
-                return View(await _context.Juegos.Where(j => j.Categoria == idCategoria));
+                return View(_context.Juegos.Where(j => j.Categoria == idCategoria));
             }
             
             return View(await _context.Juegos.ToListAsync());
