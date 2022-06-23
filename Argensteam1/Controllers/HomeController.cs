@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Argensteam1.Context;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace Argensteam1.Controllers
 {
@@ -57,14 +58,23 @@ namespace Argensteam1.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Juegos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (juego == null)
+            var u = await _context.Usuarios
+                .FirstOrDefaultAsync(m => m.UserId == usuario.UserId);
+            if (u == null)
             {
                 return NotFound();
             }
+            if (u.Password.Equals(usuario.Password))
+            {
+                HttpContext.Session.SetString("usuario", u.Username);
 
-            return View(juego);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return NotFound();
+            }
+            
 
 
         }
