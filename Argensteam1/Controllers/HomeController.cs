@@ -1,14 +1,15 @@
-﻿using Argensteam1.Models;
+﻿using System.Linq;
+using Argensteam1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Argensteam1.Context;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace Argensteam1.Controllers
 {
@@ -40,11 +41,11 @@ namespace Argensteam1.Controllers
       
 
         // GET: Juego
-        public async Task<IActionResult> Index(int? idCategoria)
+        public async Task<IActionResult> Index(Categoria? catego)
         {
-            if (idCategoria != null)
+            if (catego != null)
             {
-                return View(await _context.Juegos.Where(j => j.Categoria == idCategoria));
+                return View( _context.Juegos.Where(j => j.Categoria == catego));
             }
             
             return View(await _context.Juegos.ToListAsync());
@@ -57,7 +58,7 @@ namespace Argensteam1.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Juegos
+            var u = await _context.Juegos
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (juego == null)
             {
