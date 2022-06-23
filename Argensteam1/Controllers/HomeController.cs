@@ -46,7 +46,7 @@ namespace Argensteam1.Controllers
         {
             if (catego != null)
             {
-                return View( _context.Juegos.Where(j => j.Categoria == catego));
+                return View(_context.Juegos.Where(j => j.Categoria == catego));
             }
             
             return View(await _context.Juegos.ToListAsync());
@@ -75,9 +75,6 @@ namespace Argensteam1.Controllers
             {
                 return NotFound();
             }
-            
-
-
         }
 
 
@@ -104,9 +101,15 @@ namespace Argensteam1.Controllers
         }
 
         //GET: Soporte
-        public IActionResult Perfil()
+        public async Task<IActionResult> Perfil()
         {
-            return View();
+            if (HttpContext.Session.GetString("usuario") != null) 
+            {
+                return View(await _context.Usuarios.FirstOrDefaultAsync(u => u.Username.Equals(HttpContext.Session.GetString("usuario"))));
+            }
+
+            return RedirectToAction(nameof(Login));
+
         }
 
         // POST: Home/Registro
