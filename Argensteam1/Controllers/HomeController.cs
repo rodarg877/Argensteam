@@ -52,7 +52,7 @@ namespace Argensteam1.Controllers
             return View(await _context.Juegos.ToListAsync());
         }
 
-        public async Task<IActionResult> Login(Usuario usuario)
+        public async Task<IActionResult> InicioSesion(Usuario usuario)
         {
             if (usuario == null)
             {
@@ -108,7 +108,7 @@ namespace Argensteam1.Controllers
                 return View(await _context.Usuarios.FirstOrDefaultAsync(u => u.Username.Equals(HttpContext.Session.GetString("usuario"))));
             }
 
-            return RedirectToAction(nameof(Login));
+            return RedirectToAction(nameof(InicioSesion));
 
         }
 
