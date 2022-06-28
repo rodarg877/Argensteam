@@ -41,7 +41,7 @@
             <p>@Model.Descripcion</p>
             <p>Precio: $@Model.Precio</p>
             <div style="display:inline-block">
-                <button class="btn btn-primary btn-lg mt-3 mr-2"> Comprar</button>
+                <a class="btn btn-primary btn-lg mt-3 mr-2" asp-action="Comprar" asp-route-id="@Model.Id"> Comprar</a>
                 <button class="btn btn-primary btn-lg mt-3"> Whishlist</button>
             </div>
         </aside>

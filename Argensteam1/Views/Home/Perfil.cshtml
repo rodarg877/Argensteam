@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Argensteam1.Models.Usuario
 @{
 }
 
@@ -9,7 +7,7 @@
     <div class="row" id="user-profile">
         <div class="col-lg-3 col-md-4 col-sm-4">
             <div class="main-box clearfix">
-                <h2>John Doe </h2>
+                <h2>@Model.Username </h2>
                 <div class="profile-status">
                     <i class="fa fa-check-circle"></i> Online
                 </div>

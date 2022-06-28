@@ -50,7 +50,7 @@ namespace Argensteam1
                 options.IdleTimeout = TimeSpan.FromMinutes(1);//si quieren que la sesión expire luego de determinado tiempo  
             });
 
-            services.AddMvc();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
 
         }
 
@@ -74,6 +74,9 @@ namespace Argensteam1
 
             app.UseAuthorization();
 
+           
+
+            app.UseSession();     //Habilitar sesiones.
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -81,16 +84,7 @@ namespace Argensteam1
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseSession();     //Habilitar sesiones.
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Home}/{action=Index}/{id?}");
-            //});
-
-
+            //app.UseMvc();
 
         }
     }

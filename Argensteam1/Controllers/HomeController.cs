@@ -60,14 +60,14 @@ namespace Argensteam1.Controllers
             }
 
             var u = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.UserId == usuario.UserId);
+                .FirstOrDefaultAsync(m => m.Username == usuario.Username);
             if (u == null)
             {
                 return NotFound();
             }
             if (u.Password.Equals(usuario.Password))
             {
-                HttpContext.Session.SetString("usuario", u.Username);
+                HttpContext.Session.SetString("default", u.UserId.ToString());
 
                 return RedirectToAction(nameof(Index));
             }
@@ -104,9 +104,17 @@ namespace Argensteam1.Controllers
         }
 
         //GET: Soporte
-        public IActionResult Perfil()
+        public async Task<IActionResult> Perfil()
         {
-            return View();
+            String idUser = HttpContext.Session.GetString("default");
+            if (idUser == null)
+            {
+                return RedirectToAction(nameof(InicioSesion));
+            } 
+            else
+            {   
+                return View(await _context.Usuarios.FirstOrDefaultAsync(m => m.UserId == int.Parse(idUser)));
+            }
         }
 
         // POST: Home/Registro
@@ -152,6 +160,81 @@ namespace Argensteam1.Controllers
             }
 
             return View(juego);
+        }
+
+        // Comprar
+        public async Task<IActionResult> Comprar(int? id)
+        {
+            String idUser = HttpContext.Session.GetString("default");
+            Usuario user;
+            if (idUser == null)
+            {
+                return RedirectToAction(nameof(InicioSesion));
+            }
+            else
+            {
+                user = await _context.Usuarios.FirstOrDefaultAsync(m => m.UserId == int.Parse(idUser));
+            }
+
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var juego = await _context.Juegos
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (juego == null)
+            {
+                return NotFound();
+            }
+
+            UsuarioJuego uj = new UsuarioJuego();
+            uj.JuegoId = juego.Id;
+            uj.UsuarioId = user.UserId;
+            uj.tipoLista = 'B';
+
+            _context.Add(uj);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Perfil));
+
+        }
+        // Boton whishlist
+        public async Task<IActionResult> Whishlist(int? id)
+        {
+            String idUser = HttpContext.Session.GetString("default");
+            Usuario user;
+            if (idUser == null)
+            {
+                return RedirectToAction(nameof(InicioSesion));
+            }
+            else
+            {
+                user = await _context.Usuarios.FirstOrDefaultAsync(m => m.UserId == int.Parse(idUser));
+            }
+
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var juego = await _context.Juegos
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (juego == null)
+            {
+                return NotFound();
+            }
+
+            UsuarioJuego uj = new UsuarioJuego();
+            uj.JuegoId = juego.Id;
+            uj.UsuarioId = user.UserId;
+            uj.tipoLista = 'W';
+
+            _context.Add(uj);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Perfil));
+
         }
 
         // GET: Juego/Create
