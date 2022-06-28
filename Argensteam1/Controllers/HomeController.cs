@@ -46,13 +46,13 @@ namespace Argensteam1.Controllers
         {
             if (catego != null)
             {
-                return View( _context.Juegos.Where(j => j.Categoria == catego));
+                return View(_context.Juegos.Where(j => j.Categoria == catego));
             }
             
             return View(await _context.Juegos.ToListAsync());
         }
 
-        public async Task<IActionResult> Login(Usuario usuario)
+        public async Task<IActionResult> InicioSesion(Usuario usuario)
         {
             if (usuario == null)
             {
@@ -75,9 +75,6 @@ namespace Argensteam1.Controllers
             {
                 return NotFound();
             }
-            
-
-
         }
 
 

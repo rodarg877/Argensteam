@@ -10,7 +10,8 @@
             @foreach (Categoria c in Enum.GetValues(typeof(Categoria)))
             {
             <li>
-               <button class= "btn btn-outline-light btn-lg mt-5 mb-3">@c</button>
+               @*<button class= "btn btn-outline-light btn-lg mt-5 mb-3" asp-action="Index" asp-route-id="@c">@c</button>*@
+               <a class= "btn btn-outline-light btn-lg mt-5 mb-3" asp-action="Index" asp-route-id="@c">@c</a> 
             </li> 
             }
             </ul>
