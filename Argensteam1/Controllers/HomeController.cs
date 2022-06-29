@@ -120,7 +120,7 @@ namespace Argensteam1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registro([Bind("UserId,Username,Password,Email")] Usuario usuario)
         {
-            if (ModelState.IsValid && await _context.Usuarios.FirstOrDefaultAsync(m => m.Username == usuario.Username)!=null)
+            if (ModelState.IsValid && await _context.Usuarios.FirstOrDefaultAsync(m => m.Username == usuario.Username)==null)
             {
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
