@@ -155,7 +155,7 @@ namespace Argensteam1.Controllers
                 }
                 else
                 {
-                    //alert addModelError
+                    ModelState.AddModelError("UserName", "ya existe un usuario con ese nombre");
                 }
 
             }
