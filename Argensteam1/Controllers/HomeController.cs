@@ -260,11 +260,18 @@ namespace Argensteam1.Controllers
             uj.JuegoId = juego.Id;
             uj.UsuarioId = user.UserId;
             uj.tipoLista = 'W';
-
-            _context.Add(uj);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Perfil));
-
+            UsuarioJuego buscado =await  _context.UsuarioJuegos.FirstOrDefaultAsync(m => m.UsuarioId == uj.UsuarioId && m.JuegoId == uj.JuegoId);
+            if (buscado==null)
+            {
+                _context.Add(uj);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Perfil));
+            }
+            else
+            {
+                ModelState.AddModelError("UserName", "Ya tiene este juego  en la biblioteca o la whishlist");
+            }
+            return View(juego);
         }
 
         // GET: Juego/Create

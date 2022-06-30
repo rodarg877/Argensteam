@@ -44,6 +44,7 @@
                 <a class="btn btn-primary btn-lg mt-3 mr-2" asp-action="Comprar" asp-route-id="@Model.Id"> Comprar</a>
                 <a class="btn btn-primary btn-lg mt-3 mr-2" asp-action="Whishlist" asp-route-id="@Model.Id"> Whishlist</a>
             </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
         </aside>
     </div>
     @section Scripts {
