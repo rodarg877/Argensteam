@@ -44,13 +44,15 @@ namespace Argensteam1.Controllers
         // GET: Juego
         public async Task<IActionResult> Index(int? idCategoria)
         {
-            //if (idCategoria != null)
-            //{
-            //    return View(_context.Juegos.Where(j => int.Parse(j.Categoria) == idCategoria));
-            //}
-            
+            if (idCategoria != null)
+            {
+                return View(_context.Juegos.Where(j => ((int)j.Categoria) == (idCategoria)));
+            }
+
+            ViewBag.sesion = HttpContext.Session.GetString("default");
             return View(await _context.Juegos.ToListAsync());
         }
+
 
         public async Task<IActionResult> Sesion(Usuario usuario)
         {
@@ -80,7 +82,7 @@ namespace Argensteam1.Controllers
 
         //GET:inicioSession
         public IActionResult InicioSesion()
-        {    
+        {
         return View();
         }
         //GET: Registro
@@ -90,19 +92,28 @@ namespace Argensteam1.Controllers
         }
 
         //GET: Soporte
-        public IActionResult Soporte() { 
+        public IActionResult Soporte() {
+            ViewBag.sesion = HttpContext.Session.GetString("default");
             return View();
         }
 
         //GET: Noticias
         public async Task<IActionResult> Noticias()
         {
+            ViewBag.sesion = HttpContext.Session.GetString("default");
             return View(await _context.Noticias.ToListAsync());
         }
 
-        //GET: Soporte
+        public IActionResult Deslogueo()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction(nameof(Index));
+        }
+
+        //GET: Perfil
         public async Task<IActionResult> Perfil()
         {
+            ViewBag.sesion = HttpContext.Session.GetString("default");
             String idUser = HttpContext.Session.GetString("default");
             if (idUser == null)
             {

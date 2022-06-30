@@ -30,16 +30,16 @@
                 <a class="nav-link nav-button" asp-action="Perfil">Perfil</a>
             </li>
         </ul>
-            <a  class="nav-link  col-md-2 inicio" asp-action="InicioSesion">Desloguear</a>
-        //@{
-        //    if ()
-        //    {
-        //        <a  class="nav-link  col-md-2 inicio" asp-action="InicioSesion">Desloguear</a>
-        //    }
-        //    else
-        //    {
-        //        <a  class="nav-link  col-md-2 inicio" asp-action="InicioSesion">Iniciar Sesion</a>
-        //    }
+        @{
+            var sesion = ViewBag.sesion;
+            if (sesion != null)
+            {
+                <a  class="nav-link  col-md-2 inicio" asp-action="Deslogueo">Desloguear</a>
+            }
+            else
+            {
+                <a  class="nav-link  col-md-2 inicio" asp-action="InicioSesion">Iniciar Sesion</a>
+            }
         }
  
 
