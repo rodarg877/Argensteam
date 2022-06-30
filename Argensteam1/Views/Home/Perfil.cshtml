@@ -48,12 +48,34 @@
                    </nav>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-biblioteca">
-                            
+                            @foreach(UsuarioJuego uj in Model.UsuarioJuegos.Where(uj => uj.tipoLista.Equals('B')))
+                            {
+                                <div class="col-md-3 ml-3 tarjeta" >
+                                    <h5 id="nombre" class="tituloTarjeta"> @Html.DisplayFor(modelItem=>uj.Juego.Name) </h5>
+                                    @{
+                                        Juego juego = (Juego)uj.Juego;
+                                    }
+                                    <img  class= "tamañoJuegoVenta" src=@Url.Content(juego.Imagenes) alt="">
+                                    <h5 class="titulo2">Precio: $ @Html.DisplayFor(modelItem=>uj.Juego.Precio) </h5>                               
+                                    <a class="btn btn-outline-primary" asp-action="Juegos" asp-route-id="@uj.Juego.Id">Ver Mas</a>
+                                </div>
+                            } 
 
                         </div>
 
                         <div class="tab-pane fade" id="tab-whishlist">
-                            
+                            @foreach(UsuarioJuego uj in Model.UsuarioJuegos.Where(uj => uj.tipoLista.Equals('W')))
+                            {
+                                <div class="col-md-3 ml-3 tarjeta" >
+                                    <h5 id="nombre" class="tituloTarjeta"> @Html.DisplayFor(modelItem=>uj.Juego.Name) </h5>
+                                    @{
+                                        Juego juego = (Juego)uj.Juego;
+                                    }
+                                    <img  class= "tamañoJuegoVenta" src=@Url.Content(juego.Imagenes) alt="">
+                                    <h5 class="titulo2">Precio: $ @Html.DisplayFor(modelItem=>uj.Juego.Precio) </h5>                               
+                                    <a class="btn btn-outline-primary" asp-action="Juegos" asp-route-id="@uj.Juego.Id">Ver Mas</a>
+                                </div>
+                            }    
 
                         </div>
 

@@ -58,7 +58,7 @@
             </div>
             <div class="row mt-5">
                @foreach (Juego juego in Model) {
-                    <div class="col-md-3 ml-3 tarjeta" >
+                <div class="col-md-3 ml-3 tarjeta" >
                     <h5 id="nombre" class="tituloTarjeta"> @Html.DisplayFor(modelItem=>juego.Name) </h5>
                     <img  class= "tamañoJuegoVenta" src=@Url.Content(juego.Imagenes) alt="">
                     <h5 class="titulo2">Precio: $ @Html.DisplayFor(modelItem=>juego.Precio) </h5>

@@ -10,7 +10,7 @@ using Argensteam1.Context;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
-
+using System.Collections.ObjectModel;
 
 namespace Argensteam1.Controllers
 {
@@ -24,7 +24,7 @@ namespace Argensteam1.Controllers
             _context = context;
         }
 
-      
+
 
         public IActionResult Privacy()
         {
@@ -42,12 +42,12 @@ namespace Argensteam1.Controllers
       
 
         // GET: Juego
-        public async Task<IActionResult> Index(Categoria? catego)
+        public async Task<IActionResult> Index(int? idCategoria)
         {
-            if (catego != null)
-            {
-                return View(_context.Juegos.Where(j => j.Categoria == catego));
-            }
+            //if (idCategoria != null)
+            //{
+            //    return View(_context.Juegos.Where(j => int.Parse(j.Categoria) == idCategoria));
+            //}
             
             return View(await _context.Juegos.ToListAsync());
         }
@@ -109,8 +109,21 @@ namespace Argensteam1.Controllers
                 return RedirectToAction(nameof(InicioSesion));
             } 
             else
-            {   
-                return View(await _context.Usuarios.FirstOrDefaultAsync(m => m.UserId == int.Parse(idUser)));
+            {
+                Usuario u = await _context.Usuarios.FirstOrDefaultAsync(m => m.UserId == int.Parse(idUser));
+                List<UsuarioJuego> uj =  _context.UsuarioJuegos.Where(uj => uj.UsuarioId == u.UserId).ToList();
+                foreach (UsuarioJuego usuJue in uj)
+                {
+                    usuJue.Usuario = u;
+                    usuJue.Juego = await _context.Juegos.FirstOrDefaultAsync(j => j.Id == usuJue.JuegoId);
+                }
+                u.UsuarioJuegos = uj;
+                //foreach (UsuarioJuego uj in _context.UsuarioJuegos.Where(uj => uj.UsuarioId == int.Parse(idUser)))
+                //{
+                //    uj.Juego = _context.Juegos.FirstOrDefaultAsync();
+                //    u.UsuarioJuegos.Add(uj);
+                //}
+                return View(u);
             }
         }
 
@@ -120,11 +133,20 @@ namespace Argensteam1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registro([Bind("UserId,Username,Password,Email")] Usuario usuario)
         {
-            if (ModelState.IsValid && await _context.Usuarios.FirstOrDefaultAsync(m => m.Username == usuario.Username)==null)
+            if (ModelState.IsValid)
             {
-                _context.Add(usuario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Perfil));
+                if (await _context.Usuarios.FirstOrDefaultAsync(m => m.Username == usuario.Username) == null)
+                {
+                    _context.Add(usuario);
+                    await _context.SaveChangesAsync();
+                    HttpContext.Session.SetString("default", usuario.UserId.ToString());
+                    return RedirectToAction(nameof(Perfil));
+                }
+                else
+                {
+                    //alert addModelError
+                }
+
             }
             return View(usuario);
         }

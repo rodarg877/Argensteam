@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,7 +30,19 @@
                 <a class="nav-link nav-button" asp-action="Perfil">Perfil</a>
             </li>
         </ul>
-        <a  class="nav-link  col-md-2 inicio" asp-action="InicioSesion">Iniciar Sesion</a>
+            <a  class="nav-link  col-md-2 inicio" asp-action="InicioSesion">Desloguear</a>
+        //@{
+        //    if ()
+        //    {
+        //        <a  class="nav-link  col-md-2 inicio" asp-action="InicioSesion">Desloguear</a>
+        //    }
+        //    else
+        //    {
+        //        <a  class="nav-link  col-md-2 inicio" asp-action="InicioSesion">Iniciar Sesion</a>
+        //    }
+        }
+ 
+
     </header>
     <div>
         <main role="main" class="pb-3">
