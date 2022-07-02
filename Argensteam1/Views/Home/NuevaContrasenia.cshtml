@@ -3,44 +3,45 @@
 *@
 @model Argensteam1.Models.Usuario
 @{
-    ViewData["Title"] = "Inicio Sesion";
+    ViewData["Title"] = "Cambio de Contraseña";
 }
  <div class="d-flex flex-column min-vh-100  justify-content-center align-items-center a1">
             <div class="card p-4 text-light bg-dark mb-5 rounded-lg ancho">
                 <div class="card-header">
-                    <h3>Iniciar sesión </h3>
+                    <h3>Cambiar Contraseña </h3>
                 </div>
                 <div class="card-body w-100 mt-3">
-                    <form name="login" asp-action="Sesion" asp-route-id="" method="post">
+                    <form name="login" asp-action="CambiarContrasenia" asp-route-id="" method="post">
                             <div class="input-group form-group mt-3 w-100">
-                            <div class="bg-secondary rounded-start">
-                                <span class="m-3"><i class="bi bi-person mt-3"  ></i></span>
+                                <div class="bg-secondary rounded-start">
+                                    <span class="m-3"><i class="bi bi-person mt-3"  ></i></span>
                                 </div>
-                                <input id="usuario" class="form-control " placeholder="Usuario" asp-for="Username">
+                                <input name="username" class="form-control " placeholder="Usuario">
+                            </div>
+
+
+                            <div class="input-group form-group mt-3 w-100">
+                                <div class="bg-secondary rounded-start">
+                                    <span class="m-3"><i class="bi bi-lock mt-3"  ></i></span>
+                                </div>
+                                <input name="contraseniaNueva" class="form-control " placeholder="Contraseña" asp-for="Password">
                             </div>
                             
-                            <span asp-validation-for="Username" class="text-danger"></span>
+                            <span asp-validation-for="Password" class="text-danger"></span>
                         
                         <div class="input-group form-group mt-3 w-100">
                             <div class="bg-secondary rounded-start">
                                 <span class="m-3"><i class="bi bi-lock"></i></span>
                             </div>
-                            <input id="contrasenia" class="form-control " placeholder="Contraseña"  asp-for="Password">
+                            <input name="contraseniaRepetida" class="form-control " placeholder="Repetir Contraseña"  asp-for="Password">
                         </div>
                            <span asp-validation-for="Password" class="text-danger"></span>
                         
 
                         <div class="form-group mt-5">
-                            <input type="submit" value="Acceder" class="btn bg-secondary float-end text-white w-100"  name="login-btn">
+                            <input type="submit" value="Cambiar" class="btn bg-secondary float-end text-white w-100"  name="login-btn">
                         </div>
                     </form>
-                </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-center container">
-                        <a asp-action="Registro" class=" register-btn col-md-3"  name="register-btn">Registrarse</a>
-                        <div class="col-md-1"></div>
-                        <a asp-action="NuevaContrasenia" class=" register-btn  col-md-5"  name="olvido">¿Olvidaste tu contraseña?</a>
-                    </div>
                 </div>
             </div>
         </div>

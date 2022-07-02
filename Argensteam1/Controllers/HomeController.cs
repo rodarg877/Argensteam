@@ -86,6 +86,12 @@ namespace Argensteam1.Controllers
             return View();
         }
 
+        //GET: Nueva Contrasenia
+        public IActionResult NuevaContrasenia()
+        {
+            return View();
+        }
+
         //GET: Soporte
         public IActionResult Soporte() {
             ViewBag.sesion = HttpContext.Session.GetString("default");
@@ -159,6 +165,29 @@ namespace Argensteam1.Controllers
             }
             return View(usuario);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CambiarContrasenia(String username, String contraseniaNueva, String contraseniaRepetida)
+        {
+            Usuario u = await _context.Usuarios.FirstOrDefaultAsync(u => u.Username == username);
+
+            if (u != null)
+            {
+                if (contraseniaNueva.Equals(contraseniaRepetida))
+                {
+                    u.Password = contraseniaRepetida;
+                    _context.Update(u);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(InicioSesion));
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
+            return View();
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
