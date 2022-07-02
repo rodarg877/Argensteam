@@ -24,8 +24,8 @@
 
                 <div class="profile-details">
                     <ul class="fa-ul">
-                        <li><i class="fa-li fa fa-truck"></i>Juegos Adquiridos: <span>456</span></li>
-                        <li><i class="fa-li fa fa-comment"></i>Juegos deseados: <span>828</span></li>
+                        <li><i class="fa-li fa fa-truck"></i>Juegos Adquiridos:@ViewBag.contBiblio <span></span></li>
+                        <li><i class="fa-li fa fa-comment"></i>Juegos deseados: <span>@ViewBag.contWhish</span></li>
                     </ul>
                 </div>
 
@@ -48,6 +48,7 @@
                    </nav>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-biblioteca">
+                            <div class="row mt-5">
                             @foreach(UsuarioJuego uj in Model.UsuarioJuegos.Where(uj => uj.tipoLista.Equals('B')))
                             {
                                 <div class="col-md-3 ml-3 tarjeta" >
@@ -60,10 +61,11 @@
                                     <a class="btn btn-outline-primary" asp-action="Juegos" asp-route-id="@uj.Juego.Id">Ver Mas</a>
                                 </div>
                             } 
-
+                            </div>
                         </div>
 
                         <div class="tab-pane fade" id="tab-whishlist">
+                            <div class="row mt-5">
                             @foreach(UsuarioJuego uj in Model.UsuarioJuegos.Where(uj => uj.tipoLista.Equals('W')))
                             {
                                 <div class="col-md-3 ml-3 tarjeta" >
@@ -76,7 +78,7 @@
                                     <a class="btn btn-outline-primary" asp-action="Juegos" asp-route-id="@uj.Juego.Id">Ver Mas</a>
                                 </div>
                             }    
-
+                            </div>
                         </div>
 
                     </div>
