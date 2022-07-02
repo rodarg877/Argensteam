@@ -26,11 +26,6 @@ namespace Argensteam1.Controllers
 
 
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -71,7 +66,7 @@ namespace Argensteam1.Controllers
             {
                 HttpContext.Session.SetString("default", u.UserId.ToString());
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Perfil));
             }
             else
             {
@@ -226,11 +221,27 @@ namespace Argensteam1.Controllers
             uj.JuegoId = juego.Id;
             uj.UsuarioId = user.UserId;
             uj.tipoLista = 'B';
+            UsuarioJuego buscado = await _context.UsuarioJuegos.FirstOrDefaultAsync(m => m.UsuarioId == uj.UsuarioId && m.JuegoId == uj.JuegoId);
 
-            _context.Add(uj);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Perfil));
+            if (buscado == null)
+            {
+                _context.Add(uj);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Perfil));
+            }
+            else if (buscado.tipoLista.Equals('W'))
+            {
+                buscado.tipoLista = 'B';
+                _context.Update(buscado);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Perfil));
+            }
+            else
+            {
+                TempData["msg"] = "<script>alert('Ya se encuentra en la biblioteca');</script>";
+            }
 
+            return RedirectToAction("Juegos", new { id });
         }
         // Boton whishlist
         public async Task<IActionResult> Whishlist(int? id)
@@ -252,8 +263,7 @@ namespace Argensteam1.Controllers
                 return NotFound();
             }
 
-            var juego = await _context.Juegos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var juego = await _context.Juegos.FirstOrDefaultAsync(m => m.Id == id);
             if (juego == null)
             {
                 return NotFound();
@@ -263,7 +273,8 @@ namespace Argensteam1.Controllers
             uj.JuegoId = juego.Id;
             uj.UsuarioId = user.UserId;
             uj.tipoLista = 'W';
-            UsuarioJuego buscado =await  _context.UsuarioJuegos.FirstOrDefaultAsync(m => m.UsuarioId == uj.UsuarioId && m.JuegoId == uj.JuegoId);
+            UsuarioJuego buscado = await  _context.UsuarioJuegos.FirstOrDefaultAsync(m => m.UsuarioId == uj.UsuarioId && m.JuegoId == uj.JuegoId );
+           
             if (buscado==null)
             {
                 _context.Add(uj);
@@ -272,9 +283,10 @@ namespace Argensteam1.Controllers
             }
             else
             {
-                ModelState.AddModelError("UserName", "Ya tiene este juego  en la biblioteca o la whishlist");
+                TempData["msg"] = "<script>alert('Ya se encuentra en la whishlist o en la biblioteca');</script>";
             }
-            return View(juego);
+           
+           return RedirectToAction("Juegos", new { id });
         }
     }
 }
