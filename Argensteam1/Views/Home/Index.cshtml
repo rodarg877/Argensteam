@@ -11,7 +11,7 @@
             {
             <li>
                @*<button class= "btn btn-outline-light btn-lg mt-5 mb-3" asp-action="Index" asp-route-id="@c">@c</button>*@
-               <a class= "btn btn-outline-light btn-lg mt-5 mb-3" asp-action="Index" asp-route-id="@c">@c</a> 
+                <a class= "btn btn-outline-light btn-lg mt-5 mb-3" href="@Url.Action("Index","Home", new { idCategoria = @c.ToString() })">@c</a>
             </li> 
             }
             </ul>

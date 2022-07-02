@@ -42,11 +42,11 @@ namespace Argensteam1.Controllers
       
 
         // GET: Juego
-        public async Task<IActionResult> Index(int? idCategoria)
+        public async Task<IActionResult> Index(Categoria? idCategoria)
         {
             if (idCategoria != null)
             {
-                return View(_context.Juegos.Where(j => ((int)j.Categoria) == (idCategoria)));
+                return View(_context.Juegos.Where(j => (j.Categoria ==idCategoria)));
             }
 
             ViewBag.sesion = HttpContext.Session.GetString("default");

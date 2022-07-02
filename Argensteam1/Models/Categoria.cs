@@ -7,10 +7,10 @@ namespace Argensteam1.Models
 {
     public enum Categoria
     {
-        Accion = 0,
-        Aventura = 1,
-        Deportes = 2,
-        Terror = 3,
-        Puzzles = 4
+        Accion ,
+        Aventura ,
+        Deportes ,
+        Terror ,
+        Puzzles 
     }
 }
