@@ -48,30 +48,33 @@ namespace Argensteam1.Controllers
             return View(await _context.Juegos.ToListAsync());
         }
 
-
-        public async Task<IActionResult> Sesion(Usuario usuario)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> InicioSesion(Usuario usuario)
         {
-            if (usuario == null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
-            }
+                var u = await _context.Usuarios
+                    .FirstOrDefaultAsync(m => m.Username == usuario.Username);
+                if (u == null)
+                {
+                    ModelState.AddModelError("UserName", "el usuario es incorrecto");
+                }
+                else {
+                    if (u.Password.Equals(usuario.Password))
+                    {
+                        HttpContext.Session.SetString("default", u.UserId.ToString());
 
-            var u = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.Username == usuario.Username);
-            if (u == null)
-            {
-                return NotFound();
+                        return RedirectToAction(nameof(Perfil));
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("UserName", "Password incorrecto");
+                    }
+                }
+               
             }
-            if (u.Password.Equals(usuario.Password))
-            {
-                HttpContext.Session.SetString("default", u.UserId.ToString());
-
-                return RedirectToAction(nameof(Perfil));
-            }
-            else
-            {
-                return NotFound();
-            }
+            return View(usuario);
         }
 
 
