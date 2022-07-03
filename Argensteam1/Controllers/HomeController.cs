@@ -142,6 +142,21 @@ namespace Argensteam1.Controllers
             }
         }
 
+        public async Task<IActionResult> CambiarImagen()
+        {
+            ViewBag.sesion = HttpContext.Session.GetString("default");
+            String idUser = HttpContext.Session.GetString("default");
+            if (idUser == null)
+            {
+                return RedirectToAction(nameof(InicioSesion));
+            }
+            else
+            {
+                Usuario u = await _context.Usuarios.FirstOrDefaultAsync(m => m.UserId == int.Parse(idUser));
+                return View(u);
+            }
+        }
+
         // POST: Home/Registro
 
         [HttpPost]
@@ -150,42 +165,58 @@ namespace Argensteam1.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (await _context.Usuarios.FirstOrDefaultAsync(m => m.Username == usuario.Username) == null)
+                if(usuario.Email!= null)
                 {
-                    _context.Add(usuario);
-                    await _context.SaveChangesAsync();
-                    HttpContext.Session.SetString("default", usuario.UserId.ToString());
-                    return RedirectToAction(nameof(Perfil));
+                    if (await _context.Usuarios.FirstOrDefaultAsync(m => m.Username == usuario.Username) == null)
+                    {
+                        _context.Add(usuario);
+                        await _context.SaveChangesAsync();
+                        HttpContext.Session.SetString("default", usuario.UserId.ToString());
+                        return RedirectToAction(nameof(Perfil));
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("UserName", "ya existe un usuario con ese nombre");
+                    }
+
                 }
                 else
                 {
-                    ModelState.AddModelError("UserName", "ya existe un usuario con ese nombre");
+                    ModelState.AddModelError("Email", "El Email es campo obligatorio");
                 }
-
             }
+               
             return View(usuario);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CambiarContrasenia(String username, String contraseniaNueva, String contraseniaRepetida)
+        public async Task<IActionResult> NuevaContrasenia(Usuario usuario, String contraseniaRepetida)
         {
-            Usuario u = await _context.Usuarios.FirstOrDefaultAsync(u => u.Username == username);
+            if (ModelState.IsValid)
+            {
+                Usuario u = await _context.Usuarios.FirstOrDefaultAsync(u => u.Username == usuario.Username);
 
-            if (u != null)
-            {
-                if (contraseniaNueva.Equals(contraseniaRepetida))
+                if (u != null)
                 {
-                    u.Password = contraseniaRepetida;
-                    _context.Update(u);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(InicioSesion));
+                    if (usuario.Password.Equals(contraseniaRepetida))
+                    {
+                        u.Password = contraseniaRepetida;
+                        _context.Update(u);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(InicioSesion));
+                    }
+                    else {
+                        ModelState.AddModelError("Password", "no coinciden los passwords");
+                    }
+                   
                 }
+                else
+                {
+                    ModelState.AddModelError("Username", "usuario incorrecto");
+                }
+                
             }
-            else
-            {
-                return NotFound();
-            }
-            return View();
+            return View(usuario);
         }
 
 

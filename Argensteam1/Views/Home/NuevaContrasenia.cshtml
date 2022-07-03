@@ -11,20 +11,20 @@
                     <h3>Cambiar Contraseña </h3>
                 </div>
                 <div class="card-body w-100 mt-3">
-                    <form name="login" asp-action="CambiarContrasenia" asp-route-id="" method="post">
+                    <form name="login" asp-action="NuevaContrasenia" asp-route-id="" method="post">
                             <div class="input-group form-group mt-3 w-100">
                                 <div class="bg-secondary rounded-start">
                                     <span class="m-3"><i class="bi bi-person mt-3"  ></i></span>
                                 </div>
-                                <input name="username" class="form-control " placeholder="Usuario">
+                                 <input id="usuario" class="form-control " placeholder="Usuario" asp-for="Username">
                             </div>
-
+                            <span asp-validation-for="Username" class="text-danger"></span>
 
                             <div class="input-group form-group mt-3 w-100">
                                 <div class="bg-secondary rounded-start">
                                     <span class="m-3"><i class="bi bi-lock mt-3"  ></i></span>
                                 </div>
-                                <input name="contraseniaNueva" class="form-control " placeholder="Contraseña" asp-for="Password">
+                                <input  type="password" class="form-control " placeholder="Contraseña" asp-for="Password">
                             </div>
                             
                             <span asp-validation-for="Password" class="text-danger"></span>
@@ -33,9 +33,8 @@
                             <div class="bg-secondary rounded-start">
                                 <span class="m-3"><i class="bi bi-lock"></i></span>
                             </div>
-                            <input name="contraseniaRepetida" class="form-control " placeholder="Repetir Contraseña"  asp-for="Password">
+                            <input type="password" name="contraseniaRepetida" class="form-control " placeholder="Repetir Contraseña" >
                         </div>
-                           <span asp-validation-for="Password" class="text-danger"></span>
                         
 
                         <div class="form-group mt-5">
