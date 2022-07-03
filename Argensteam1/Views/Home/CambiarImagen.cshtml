@@ -2,14 +2,16 @@
 @model Argensteam1.Models.Usuario
 
 <h1 class="titulo ml-3">Seleccione su foto De Perfil</h1>
+
+<form asp-action="CambiarImagen">
 <div class="row mt-5">
                @for (var i = 1; i < 5; i++)
                  {
                      var o=i;
                 <div class="col-md-3 ml-3 tarjeta" >
                     <img  class= "tamañoJuegoVenta" src=@Url.Content("~/images/avatar" + @i +".jpg") alt="@i">
-                    <a class="btn btn-outline-primary" asp-action="CambiarImagen" asp-route-id=@Url.Content("~/images/avatar" + @i +".jpg")>Seleccionar</a>
+                   <input type="submit"  asp-for="FotoPerfil"  class="btn btn-outline-primary" value=@Url.Content("~/images/avatar" + @i +".jpg")  >
                 </div> 
                 }
-               
             </div>
+            </form>

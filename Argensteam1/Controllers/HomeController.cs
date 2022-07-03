@@ -144,7 +144,7 @@ namespace Argensteam1.Controllers
                 return View(u);
             }
         }
-
+        //GET: CambiarImagen
         public async Task<IActionResult> CambiarImagen()
         {
             ViewBag.sesion = HttpContext.Session.GetString("default");
@@ -159,11 +159,33 @@ namespace Argensteam1.Controllers
                 return View(u);
             }
         }
+        // POST: Home/CambiarImagen
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CambiarImagen(Usuario usuario)
+        {
+            ViewBag.sesion = HttpContext.Session.GetString("default");
+            String idUser = HttpContext.Session.GetString("default");
+            if (idUser == null)
+            {
+                return RedirectToAction(nameof(InicioSesion));
+            }
+            else
+            {
+                Usuario u = await _context.Usuarios.FirstOrDefaultAsync(m => m.UserId == int.Parse(idUser));
+                u.FotoPerfil=usuario.FotoPerfil;
+                _context.Update(u);
+                await _context.SaveChangesAsync();
+                
+                return RedirectToAction(nameof(Perfil));
+            }
+        }
 
         // POST: Home/Registro
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+      
         public async Task<IActionResult> Registro([Bind("UserId,Username,Password,Email")] Usuario usuario)
         {
             if (ModelState.IsValid)
