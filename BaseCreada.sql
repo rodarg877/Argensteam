@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [Argensteam]    Script Date: 18/6/2022 12:11:28 ******/
+/****** Object:  Database [Argensteam]    Script Date: 6/7/2022 22:10:30 ******/
 CREATE DATABASE [Argensteam]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -80,7 +80,7 @@ ALTER DATABASE [Argensteam] SET QUERY_STORE = OFF
 GO
 USE [Argensteam]
 GO
-/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 18/6/2022 12:11:28 ******/
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 6/7/2022 22:10:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -94,7 +94,7 @@ CREATE TABLE [dbo].[__EFMigrationsHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Juegos]    Script Date: 18/6/2022 12:11:28 ******/
+/****** Object:  Table [dbo].[Juegos]    Script Date: 6/7/2022 22:10:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -113,7 +113,7 @@ CREATE TABLE [dbo].[Juegos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Noticias]    Script Date: 18/6/2022 12:11:28 ******/
+/****** Object:  Table [dbo].[Noticias]    Script Date: 6/7/2022 22:10:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -129,7 +129,23 @@ CREATE TABLE [dbo].[Noticias](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UsuarioJuegos]    Script Date: 18/6/2022 12:11:28 ******/
+/****** Object:  Table [dbo].[Soporte]    Script Date: 6/7/2022 22:10:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Soporte](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [nvarchar](max) NOT NULL,
+	[Email] [nvarchar](max) NOT NULL,
+	[Mensaje] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_Soporte] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UsuarioJuegos]    Script Date: 6/7/2022 22:10:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -145,7 +161,7 @@ CREATE TABLE [dbo].[UsuarioJuegos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Usuarios]    Script Date: 18/6/2022 12:11:28 ******/
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 6/7/2022 22:10:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -204,15 +220,77 @@ INSERT [dbo].[Juegos] ([Id], [Name], [Descripcion], [urllVideo], [Imagenes], [Pr
 GO
 INSERT [dbo].[Juegos] ([Id], [Name], [Descripcion], [urllVideo], [Imagenes], [Precio], [Categoria]) VALUES (16, N'Dying Light 2', N'Nosotros encarnaremos, en primera persona, a Aiden Caldwell, que tiene poderes especiales por culpa del virus, y trata de encontrar a su hermana perdida. Nuestras decisiones a lo largo del juego no sólo alterarán la historia, sino que transforman el escenario. ', N'https://youtu.be/2MD4gTitmzw', N'~/images/dl.jpg', 1450, 3)
 GO
+INSERT [dbo].[Juegos] ([Id], [Name], [Descripcion], [urllVideo], [Imagenes], [Precio], [Categoria]) VALUES (17, N'Evil Dead The Game', N'La saga que en España conocimos como Posesión Infernal (original de Sam Raimi y remake de Fede Álvarez) vuelve a los videojuegos, y es una gran noticia. Saber Interactive (con estudio en España) recupera a Ash y a los principales personajes de la saga para un juego de terror y acción con componente multijugador.
+
+Armados con la icónica motosierra y el palo de fuego (la escopeta de cartuchos recortada) tendremos que hacer frente a oleadas de demonios en modo cooperativo o contra un jugador que decida encarnar a las fuerzas de Kandarian. ', N'https://www.youtube.com/embed/ifQEyxmQ-WE', N'~/images/edg.jpg', 1450, 3)
+GO
+INSERT [dbo].[Juegos] ([Id], [Name], [Descripcion], [urllVideo], [Imagenes], [Precio], [Categoria]) VALUES (18, N'Ghostwire Tokyo', N'Tango Gameworks (el estudio de Shinji Mikami que pertenece a Microsoft) lanzará este juego de terror y acción en PS5 y PC el próximo 25 de marzo. Nos presenta una ciudad de Tokyo post apocalíptica, en que la mayor parte de la población ha desaparecido tras unos fenómenos paranormales.
+
+Para hacer frente a las criaturas que vagan por los lugares más icónicos de la ciudad, nosotros podremos aliarnos con un ente espiritual y usar poderes especiales. Son ataques elementales vinculados con el fuego, el viento o el agua.', N'https://www.youtube.com/embed/rYfaC63jXhc', N'~/images/gw.jpg', 1650, 3)
+GO
+INSERT [dbo].[Juegos] ([Id], [Name], [Descripcion], [urllVideo], [Imagenes], [Precio], [Categoria]) VALUES (19, N'Dark Pictures Anthology: The Devil In Me', N'Siguiendo la saga Dark Pictures Anthology (que arrancó con Man of Medan y también nos ha ofrecido Little Hope y House of Ashes) el estudio británico Supermassive nos ofrece una nueva perspectiva del terror. 
+
+En esta ocasión, como miembros de un equipo de rodaje, visitamos la réplica de un castillo en Estados Unidos en que se han producido numerosos asesinatos. Una "curiosidad" que esconde un peligroso secreto.', N'https://www.youtube.com/embed/lrrJQ4qcs5E', N'~/images/dinme.jpg', 1850, 3)
+GO
+INSERT [dbo].[Juegos] ([Id], [Name], [Descripcion], [urllVideo], [Imagenes], [Precio], [Categoria]) VALUES (20, N'Dead Space Remake', N'EA Motive (Star Wars Squadrons) se encuentra detrás de este proyecto, que los fans llevábamos esperando durante años. Dead Space toma como referencia todo el material original de Visceral Games, pero reformulando sus mecánicas y dando un lavado de cara a sus gráficos.
+
+Volveremos a encarnar al ingeniero de la nave USG Ishimura Isaac Clarke, para embarcarnos en un viaje aterrador que desvele el origen de los necromorfos y también qué pasó con su mujer desaparecida. ', N'https://www.youtube.com/embed/Pp4m4xixEek', N'~/images/ds.jpg', 1850, 3)
+GO
+INSERT [dbo].[Juegos] ([Id], [Name], [Descripcion], [urllVideo], [Imagenes], [Precio], [Categoria]) VALUES (21, N'Oxenfree 2: Lost Signals', N'xenfree II: Lost Signals es un videojuego de aventuras de corte narrativo y una temática sobrenatural en el que una investigadora debe lidiar con una serie de sucesos fantasmagóricos. ', N'https://www.youtube.com/embed/LH8dYVPVxfM', N'~/images/oxe.jpg', 950, 4)
+GO
+INSERT [dbo].[Juegos] ([Id], [Name], [Descripcion], [urllVideo], [Imagenes], [Precio], [Categoria]) VALUES (22, N'Escape Academy', N'Escape Academy se presenta como uno de los primeros videojuegos capaces de capturar la experiencia verdaderamente alucinante de las escape rooms.', N'https://www.youtube.com/embed/RBX6LGc7AwQ', N'~/images/ea.jpg', 850, 4)
+GO
+INSERT [dbo].[Juegos] ([Id], [Name], [Descripcion], [urllVideo], [Imagenes], [Precio], [Categoria]) VALUES (23, N'Super Bomberman R 2', N'Super Bomberman 2 se presenta por Konami omo el siguiente capítulo de la historia de los Hermanos Bomberman en una nueva aventura para salvar la galaxia.', N'https://www.youtube.com/embed/c2brADq94ao', N'~/images/bomb.jpg', 850, 4)
+GO
+INSERT [dbo].[Juegos] ([Id], [Name], [Descripcion], [urllVideo], [Imagenes], [Precio], [Categoria]) VALUES (24, N'Lorelei and the Laser Eyes', N'Lorelei and the Laser Eyes es un videojuego de acción, aventura y puzles donde el jugador se encontrará con enigmas surrealistas y una historia espeluznante en un mundo dantesco. "El escenario está preparado. Imagina una antigua casa señorial barroca, tal vez un hotel o un museo, en algún lugar del Europa Central. Una mujer deambula en busca de respuestas".', N'https://www.youtube.com/embed/-O4Q33l05js', N'~/images/tle.jpg', 1050, 4)
+GO
+INSERT [dbo].[Juegos] ([Id], [Name], [Descripcion], [urllVideo], [Imagenes], [Precio], [Categoria]) VALUES (25, N'COCOON', N'COCOON busca ofrecer una genuina aventuras de rompecabezas, donde cada mundo existe dentro de un orbe que puede llevar a la espalda su protagonista.', N'https://www.youtube.com/embed/qMsPcrbRFSQ', N'~/images/co.jpg', 1450, 4)
+GO
 SET IDENTITY_INSERT [dbo].[Juegos] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Noticias] ON 
+GO
+INSERT [dbo].[Noticias] ([NoticiaId], [Titulo], [Descripcion], [Url]) VALUES (1, N'Steam Summer Sale 2022: cuándo comienzan las ofertas y qué juegos tendrán descuentos', N'El evento en la plataforma de Valve ofrecerá enormes promociones y precios realmente para aprovechar en muchos videojuegos de PC.', N'https://www.tycsports.com/gaming/steam-summer-sale-2022-cuando-comienza-descuentos-horarios-id443608.html')
+GO
+INSERT [dbo].[Noticias] ([NoticiaId], [Titulo], [Descripcion], [Url]) VALUES (2, N'Los juegos rumoreados para PS Plus en julio 2022 que más están sonando en internet', N'Acabamos de pasar el ecuador del mes de junio, y yo solo pienso en dos cosas: lo primero es que odio el calor pero tengo muchas ganas de que llegue oficialmente el verano; no sabéis las ganas que tengo de ir a la playa, de piscina, de tener más tiempo libre, de salir por la noche a tomar algo... aunque no soy mucho de salir, pero da igual. Bueno, lo otro en lo que pienso es en los juegos de PS Plus de julio de 2022 y en el nuevo PlayStation Plus que va a llegar el 22 de este mes a Europa.', N'https://areajugones.sport.es/videojuegos/los-juegos-rumoreados-para-ps-plus-en-julio-2022-que-mas-estan-sonando-en-internet/')
+GO
+INSERT [dbo].[Noticias] ([NoticiaId], [Titulo], [Descripcion], [Url]) VALUES (3, N'Free Fire | Códigos de hoy 19 de junio de 2022; recompensas gratis', N'Os contamos cuáles son todos los códigos de recompensa gratis para Free Fire del día 19 de junio de 2022 para este battle royale en iOS y Android.', N'https://as.com/meristation/2022/06/19/noticias/1655632398_564139.html')
+GO
+SET IDENTITY_INSERT [dbo].[Noticias] OFF
+GO
+INSERT [dbo].[UsuarioJuegos] ([UsuarioId], [JuegoId], [tipoLista]) VALUES (10, 1, N'B')
+GO
+INSERT [dbo].[UsuarioJuegos] ([UsuarioId], [JuegoId], [tipoLista]) VALUES (10, 2, N'B')
+GO
+INSERT [dbo].[UsuarioJuegos] ([UsuarioId], [JuegoId], [tipoLista]) VALUES (10, 3, N'B')
+GO
+INSERT [dbo].[UsuarioJuegos] ([UsuarioId], [JuegoId], [tipoLista]) VALUES (10, 9, N'W')
+GO
+INSERT [dbo].[UsuarioJuegos] ([UsuarioId], [JuegoId], [tipoLista]) VALUES (13, 12, N'B')
 GO
 SET IDENTITY_INSERT [dbo].[Usuarios] ON 
 GO
 INSERT [dbo].[Usuarios] ([UserId], [FotoPerfil], [Username], [Password], [Email]) VALUES (5, NULL, N'rod', N'rod', N'aldanaalmiron95@gmail.com')
 GO
+INSERT [dbo].[Usuarios] ([UserId], [FotoPerfil], [Username], [Password], [Email]) VALUES (6, NULL, N'rod', N'2e24', N'rodarg87@gmail.com')
+GO
+INSERT [dbo].[Usuarios] ([UserId], [FotoPerfil], [Username], [Password], [Email]) VALUES (7, NULL, N'rod', N'123', N'sd')
+GO
+INSERT [dbo].[Usuarios] ([UserId], [FotoPerfil], [Username], [Password], [Email]) VALUES (8, NULL, N're', NULL, NULL)
+GO
+INSERT [dbo].[Usuarios] ([UserId], [FotoPerfil], [Username], [Password], [Email]) VALUES (9, NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[Usuarios] ([UserId], [FotoPerfil], [Username], [Password], [Email]) VALUES (10, N'/images/avatar3.jpg', N'pepepepe', N'12345678', N'email@email.com')
+GO
+INSERT [dbo].[Usuarios] ([UserId], [FotoPerfil], [Username], [Password], [Email]) VALUES (11, NULL, N'pepepepe', N'12345678', N'rodarg87@gmail.com')
+GO
+INSERT [dbo].[Usuarios] ([UserId], [FotoPerfil], [Username], [Password], [Email]) VALUES (12, NULL, N'arturo', N'12345678', NULL)
+GO
+INSERT [dbo].[Usuarios] ([UserId], [FotoPerfil], [Username], [Password], [Email]) VALUES (13, N'/images/avatar4.jpg', N'aldana', N'12345', N'aldanaalmiron95@gmail.com')
+GO
 SET IDENTITY_INSERT [dbo].[Usuarios] OFF
 GO
-/****** Object:  Index [IX_UsuarioJuegos_UsuarioId]    Script Date: 18/6/2022 12:11:28 ******/
+/****** Object:  Index [IX_UsuarioJuegos_UsuarioId]    Script Date: 6/7/2022 22:10:30 ******/
 CREATE NONCLUSTERED INDEX [IX_UsuarioJuegos_UsuarioId] ON [dbo].[UsuarioJuegos]
 (
 	[UsuarioId] ASC
